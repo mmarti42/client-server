@@ -89,8 +89,7 @@ int main(int argc, char *argv[])
     free_dar(all_data);
     // print_data(all_data);
     // sleep(1);
-    int a = 2;
-    while (a--)
+    while (1)
     {
         print_socket(sockfd);
         sleep (1);
