@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     
     
     if(argc != 2)
-        err_quit("Usage: %s <ip of server>");
+        err_quit("Usage: client [ip of server]");
     all_data = get_data();
     if (!*all_data)
         err_quit("empty input");

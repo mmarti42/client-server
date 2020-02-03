@@ -43,7 +43,7 @@ void	send_sub(int connfd, t_sub *sub_list)
 void	*start_rtn(void *arg)
 {
 	uint64_t **seq;
-	int connfd = *((int *)arg);
+	int connfd = *(int *)arg;
 	t_sub	*sub_list;
 
 	if (!(seq = ft_recv(connfd)))
@@ -58,7 +58,6 @@ void	*start_rtn(void *arg)
 	send_sub(connfd, sub_list);
 	pthread_exit(NULL);
 }
-	
 
 void	create_thread(int connfd)
 {
