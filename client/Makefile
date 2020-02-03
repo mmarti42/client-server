@@ -15,7 +15,7 @@ HEADERS_DIR = .
 # mlx library
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror -lreadline
+FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 
