@@ -9,6 +9,8 @@
 # include <string.h>
 # include <time.h>
 # include <limits.h>
+#include <pthread.h>
+# define MAX_QUEUE 10
 # define MAXLINE 1024
 
 typedef struct  s_sub
@@ -19,5 +21,15 @@ typedef struct  s_sub
     struct s_sub    *next;
 
 }                   t_sub;
+
+uint64_t    get_next_step(t_sub *s);
+t_sub		*parse_sub(uint64_t **arr);
+
+//
+//support functions
+//
+void        err_exit(char *s);
+void        *xmalloc(size_t size);
+void        print_seq(uint64_t **seq);
 
 #endif
