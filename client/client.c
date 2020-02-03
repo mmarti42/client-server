@@ -86,9 +86,11 @@ int main(int argc, char *argv[])
        err_quit(NULL);
     bubble_sort(all_data);
     send_data(sockfd, all_data);
+    free_dar(all_data);
     // print_data(all_data);
     // sleep(1);
-    while (1)
+    int a = 2;
+    while (a--)
     {
         print_socket(sockfd);
         sleep (1);

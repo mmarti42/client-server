@@ -16,6 +16,18 @@ void err_quit(char *s)
     exit (1);
 }
 
+void    free_dar(uint64_t **all_data)
+{
+    uint64_t **tmp;
+
+    tmp = all_data;
+    while (*tmp)
+    {
+        free(*tmp);
+        tmp++;
+    }
+    free (all_data);
+}
 
 void    *xmalloc(size_t size)
 {

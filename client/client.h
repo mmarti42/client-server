@@ -23,6 +23,7 @@ int				parse_string(char *input, uint64_t **data);
 //
 //support functions
 //
+void			free_dar(uint64_t **all_data);
 void			*xmalloc(size_t size);
 void			err_quit(char *s);
 int				ft_isdigit(char c);
