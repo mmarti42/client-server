@@ -29,7 +29,11 @@ uint64_t    **get_data()
     {
         input = readline("$> ");
         if (!strncmp(input, "export", 5))
+        {
+            if (!*all_data)
+                err_quit("Empty seq");
             break ;
+        }
         else if ((tmp = parse_string(input, &all_data[i]) < 0))
             continue ;
         i++;
