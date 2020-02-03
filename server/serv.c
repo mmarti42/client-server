@@ -53,7 +53,6 @@ void	*start_rtn(void *arg)
 		fprintf(stderr, "parse_error");
 		close (connfd);
 		pthread_exit(NULL);
-		return (NULL);
 	}
 	send_sub(connfd, sub_list);
 	pthread_exit(NULL);
@@ -84,8 +83,9 @@ int main(int argc, char **argv)
 
 	while (1) 
 	{
-		if ((connfd = accept(listenfd, (struct sockaddr*)NULL, NULL)) < 0)
+		if ((connfd = accept(listenfd, (struct sockaddr*)NULL, NULL)) >= 0)
+			create_thread(connfd);
+		else
 			err_exit("accept error");
-		create_thread(connfd);
 	}
 }
