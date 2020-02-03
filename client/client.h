@@ -7,8 +7,8 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+//#include <readline/readline.h>
+//#include <readline/history.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
