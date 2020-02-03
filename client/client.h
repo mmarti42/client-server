@@ -1,4 +1,3 @@
-
 #ifndef CLIENT_H
 #define CLIENT_H
 
@@ -10,8 +9,15 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#define MAXLINE 1024
-#define DEF_DATA_SIZE 10
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# define BUFF_SIZE 1024
+# define MAX_FD 1024
+# define MAXLINE 1024
+# define DEF_DATA_SIZE 10
+
+int				get_next_line(const int fd, char **line);
 
 void			bubble_sort(uint64_t **a);
 

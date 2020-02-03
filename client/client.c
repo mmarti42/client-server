@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#define MAXLINE 1024
-#define DEF_DATA_SIZE 10
+#include "client.h"
 
 uint64_t **expand_all_data(uint64_t **all_data, int *size)
 {
@@ -27,7 +18,8 @@ uint64_t    **get_data()
     all_data = (u_int64_t **)xmalloc(size * sizeof(uint64_t *));
     while (1)
     {
-        input = readline("$> ");
+        if (get_next_line(STDIN_FILENO, &input) < 0)
+            err_quit("get next line error");
         if (!strncmp(input, "export", 5))
         {
             if (!*all_data)
