@@ -43,7 +43,8 @@ int				parse_string(char *input, uint64_t **data)
     (*data)[2] = get_step(strtok(NULL, " \t"));
     if (!(*data)[0] || !(*data)[1] || !(*data)[2])
     {
-        memset(*data, 0, sizeof(uint64_t) * 3);
+        free(*data);
+        *data = NULL;
         fprintf(stderr, "client: invalid input\n");
         return (-1);
     }

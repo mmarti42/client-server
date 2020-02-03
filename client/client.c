@@ -18,10 +18,15 @@ uint64_t    **get_data()
     all_data = (u_int64_t **)xmalloc(size * sizeof(uint64_t *));
     while (get_next_line(STDIN_FILENO, &input))
     {
+        if (!strcmp("exit", input))
+            exit (0);
         if (!strncmp(input, "export", 5))
         {
             if (!*all_data)
-                err_quit("Empty seq");
+            {
+                fprintf(stderr, "client: empty seq\n");
+                continue ;
+            }
             break ;
         }
         else if ((tmp = parse_string(input, &all_data[i]) < 0))
