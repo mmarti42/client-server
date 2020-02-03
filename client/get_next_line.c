@@ -78,7 +78,5 @@ int			get_next_line(const int fd, char **line)
 	if (fd_lines[fd] && strchr(fd_lines[fd], '\n'))
 		return (ft_get_line(&fd_lines[fd], line));
 	ret = ft_readline(fd, &fd_lines[fd], buf, line);
-	if (read(fd, buf, 1) > 0)
-		err_quit("Too many lines");
 	return (ret);
 }

@@ -16,10 +16,8 @@ uint64_t    **get_data()
     uint64_t **all_data;
 
     all_data = (u_int64_t **)xmalloc(size * sizeof(uint64_t *));
-    while (1)
+    while (get_next_line(STDIN_FILENO, &input))
     {
-        if (get_next_line(STDIN_FILENO, &input) < 0)
-            err_quit("get next line error");
         if (!strncmp(input, "export", 5))
         {
             if (!*all_data)
@@ -27,7 +25,11 @@ uint64_t    **get_data()
             break ;
         }
         else if ((tmp = parse_string(input, &all_data[i]) < 0))
+        {
+            free(input);
             continue ;
+        }
+        free(input);
         i++;
         if (i >= size)
             all_data = expand_all_data(all_data, &size);
@@ -79,12 +81,12 @@ int main(int argc, char *argv[])
        err_quit(NULL);
     bubble_sort(all_data);
     send_data(sockfd, all_data);
-    //print_data(all_data);
-    sleep(1);
-    // while (1)
-    // {
-    //     print_socket(sockfd);
-    //     sleep (1);
-    // }
+    // print_data(all_data);
+    // sleep(1);
+    while (1)
+    {
+        print_socket(sockfd);
+        sleep (1);
+    }
     return 0;
 }
