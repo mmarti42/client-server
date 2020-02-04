@@ -1,5 +1,11 @@
 #include "serv.h"
 
+void		convert(uint64_t *tmp)
+{
+	tmp[0] = ntohll(tmp[0]);
+	tmp[1] = ntohll(tmp[1]);
+}
+
 uint64_t	**ft_recv(int connfd)
 {
 	uint64_t **res;
@@ -17,6 +23,7 @@ uint64_t	**ft_recv(int connfd)
 		tmp = (uint64_t *)xmalloc(sizeof(uint64_t) * 2);
 		if (recv(connfd, &(*tmp), sizeof(uint64_t) * 2, 0) < 0)
 			err_exit(NULL);
+		convert(tmp);
 		res[i++] = tmp;
 	}
 	return (res);
