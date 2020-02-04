@@ -24,12 +24,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(GCC) $(OBJ) -o $(NAME) $(FLAGS)
 
-$(LIB_FT):
-	make -C $(LIB_DIR)
-
-$(MLX_LIB):
-	make -C $(MLX_DIR)
-
 %.o: %.c $(HEADER)
 	$(GCC) -I $(HEADERS_DIR) -o $@ -c $<
 
