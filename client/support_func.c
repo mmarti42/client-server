@@ -56,12 +56,15 @@ void print_data(uint64_t **all_data)
 {
     char *format;
 
-    format = ft_strjoin("% ", PRIu64);
+    format = ft_strjoin("%", PRIu64);
     while (*all_data)
     {
         int i = 0;
         while (i < 3)
+        {
             printf(format, (*all_data)[i++]);
+            printf(" ");
+        }
         printf("\n");
         all_data++;
     }
@@ -74,11 +77,12 @@ void    print_socket(int sockfd)
     int b = 10;
     char *format;
 
-    format = ft_strjoin("% ", PRIu64);
+    format = ft_strjoin("%", PRIu64);
     while (b--)
     {
         read(sockfd, &a, sizeof(uint64_t));
         printf(format, a);
+        printf(" ");
     }
     free (format);
     printf("\n");
