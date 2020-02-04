@@ -1,6 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -20,6 +21,8 @@ int				get_next_line(const int fd, char **line);
 void			bubble_sort(uint64_t **a);
 
 int				parse_string(char *input, uint64_t **data);
+
+char			*ft_strjoin(char const *s1, char const *s2);
 //
 //support functions
 //
