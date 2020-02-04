@@ -52,7 +52,7 @@ uint8_t check_byte_order()
 
 void    convert(uint64_t *tmp)
 {
-    if (check_byte_order() == LE)
+    if (check_byte_order() == BE)
         return ;
     tmp[0] = (((uint64_t)htonl(tmp[0])) << 32) + htonl(tmp[0] >> 32);
     tmp[1] = (((uint64_t)htonl(tmp[1])) << 32) + htonl(tmp[1] >> 32);
