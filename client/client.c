@@ -43,19 +43,19 @@ uint64_t    **get_data()
     return (all_data);
 }
 
-// uint8_t check_byte_order()
-// {
-//     uint16_t a = 1;
+uint8_t check_byte_order()
+{
+    uint16_t a = 1;
 
-//     return (*(uint8_t *)&a);
-// }
+    return (*(uint8_t *)&a);
+}
 
 void    convert(uint64_t *tmp)
 {
-    // if (check_byte_order() == LE)
-    //     return ;
-    tmp[0] = htonll(tmp[0]);
-    tmp[1] = htonll(tmp[1]);
+    if (check_byte_order() == LE)
+        return ;
+    tmp[0] = (((uint64_t)htonl(tmp[0])) << 32) + htonl(tmp[0] >> 32);
+    tmp[1] = (((uint64_t)htonl(tmp[1])) << 32) + htonl(tmp[1] >> 32);
 }
 
 void    send_data(int sockfd, uint64_t **all_data)
@@ -81,7 +81,6 @@ int main(int argc, char *argv[])
     int         sockfd = 0, n = 0, all_data_size = DEF_DATA_SIZE, i = 0;
     struct      sockaddr_in serv_addr;
     uint64_t    **all_data;
-    
     
     if(argc != 2)
         err_quit("Usage: client [ip of server]");

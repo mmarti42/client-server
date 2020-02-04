@@ -1,9 +1,18 @@
 #include "serv.h"
 
+uint8_t check_byte_order()
+{
+    uint16_t a = 1;
+
+    return (*(uint8_t *)&a);
+}
+
 void		convert(uint64_t *tmp)
 {
-	tmp[0] = ntohll(tmp[0]);
-	tmp[1] = ntohll(tmp[1]);
+	if (check_byte_order() == BE)
+        return ;
+	tmp[0] = (((uint64_t)ntohl(tmp[0])) << 32) + ntohl(tmp[0] >> 32);
+	tmp[1] = (((uint64_t)ntohl(tmp[1])) << 32) + ntohl(tmp[1] >> 32);
 }
 
 uint64_t	**ft_recv(int connfd)

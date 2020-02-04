@@ -1,6 +1,7 @@
 #ifndef SERV_H
 # define SERV_H
 # include <stdio.h>
+#include <inttypes.h>
 # include <sys/socket.h>
 # include <netinet/in.h>
 # include <arpa/inet.h>
@@ -10,6 +11,8 @@
 # include <time.h>
 # include <limits.h>
 #include <pthread.h>
+# define LE 1
+# define BE 0
 # define MAX_QUEUE 10
 # define MAXLINE 1024
 
