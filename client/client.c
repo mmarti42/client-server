@@ -50,12 +50,11 @@ uint8_t check_byte_order()
     return (*(uint8_t *)&a);
 }
 
-void    convert(uint64_t *tmp)
+void    convert(uint64_t tmp)
 {
     if (check_byte_order() == BE)
         return ;
-    tmp[0] = (((uint64_t)htonl(tmp[0])) << 32) + htonl(tmp[0] >> 32);
-    tmp[1] = (((uint64_t)htonl(tmp[1])) << 32) + htonl(tmp[1] >> 32);
+    tmp = (((uint64_t)htonl(tmp)) << 32) + htonl(tmp >> 32);
 }
 
 void    send_data(int sockfd, uint64_t **all_data)
@@ -69,7 +68,8 @@ void    send_data(int sockfd, uint64_t **all_data)
     {
         tmp = *all_data;
         tmp++;
-        convert(tmp);
+        convert(tmp[0]);
+        convert(tmp[1]);
         if (send(sockfd, (char *)&(*tmp), sizeof(uint64_t) * 2, 0) < 0)
             err_quit(NULL);
         all_data++;

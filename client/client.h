@@ -19,6 +19,8 @@
 # define MAXLINE 1024
 # define DEF_DATA_SIZE 10
 
+void			convert(uint64_t tmp);
+
 int				get_next_line(const int fd, char **line);
 
 void			bubble_sort(uint64_t **a);

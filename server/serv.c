@@ -7,12 +7,11 @@ uint8_t check_byte_order()
     return (*(uint8_t *)&a);
 }
 
-void		convert(uint64_t *tmp)
+void		convert(uint64_t tmp)
 {
 	if (check_byte_order() == BE)
         return ;
-	tmp[0] = (((uint64_t)ntohl(tmp[0])) << 32) + ntohl(tmp[0] >> 32);
-	tmp[1] = (((uint64_t)ntohl(tmp[1])) << 32) + ntohl(tmp[1] >> 32);
+	tmp = (((uint64_t)ntohl(tmp)) << 32) + ntohl(tmp >> 32);
 }
 
 uint64_t	**ft_recv(int connfd)
@@ -32,7 +31,8 @@ uint64_t	**ft_recv(int connfd)
 		tmp = (uint64_t *)xmalloc(sizeof(uint64_t) * 2);
 		if (recv(connfd, &(*tmp), sizeof(uint64_t) * 2, 0) < 0)
 			err_exit(NULL);
-		convert(tmp);
+		convert(tmp[0]);
+		convert(tmp[1]);
 		res[i++] = tmp;
 	}
 	return (res);
@@ -49,6 +49,7 @@ void	send_sub(int connfd, t_sub *sub_list)
 		while (tmp)
 		{
 			num = get_next_step(tmp);
+			convert(num);
 			if (send(connfd, (char *)&num, sizeof(uint64_t), 0) < 0)
 				return ;
 			tmp = tmp->next;
