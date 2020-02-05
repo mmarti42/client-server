@@ -43,20 +43,6 @@ uint64_t    **get_data()
     return (all_data);
 }
 
-uint8_t check_byte_order()
-{
-    uint16_t a = 1;
-
-    return (*(uint8_t *)&a);
-}
-
-void    convert(uint64_t tmp)
-{
-    if (check_byte_order() == BE)
-        return ;
-    tmp = (((uint64_t)htonl(tmp)) << 32) + htonl(tmp >> 32);
-}
-
 void    send_data(int sockfd, uint64_t **all_data)
 {
     size_t len;

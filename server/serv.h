@@ -11,8 +11,7 @@
 # include <time.h>
 # include <limits.h>
 #include <pthread.h>
-# define LE 1
-# define BE 0
+# define IS_BE (!*(uint8_t *)&(uint16_t){1})
 # define MAX_QUEUE 10
 # define MAXLINE 1024
 
@@ -26,8 +25,10 @@ typedef struct  s_sub
 }                   t_sub;
 
 uint64_t    get_next_step(t_sub *s);
+
 t_sub		*parse_sub(uint64_t **arr);
 
+void		convert(uint64_t tmp);
 //
 //support functions
 //

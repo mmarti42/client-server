@@ -12,8 +12,7 @@
 # include <sys/stat.h>
 # include <sys/param.h>
 # include <fcntl.h>
-# define LE 1
-# define BE 0
+# define IS_BE (!*(uint8_t *)&(uint16_t){1})
 # define BUFF_SIZE 1024
 # define MAX_FD 1024
 # define MAXLINE 1024

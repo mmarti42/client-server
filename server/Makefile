@@ -4,6 +4,7 @@ SRC = serv.c\
 	parse_sub.c\
 	support_func.c\
 	get_next_step.c\
+	convert.c
 
 OBJ	= $(SRC:.c=.o)
 

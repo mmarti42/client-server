@@ -4,7 +4,8 @@ SRC = client.c\
 	bubble_sort.c\
 	support_func.c\
 	parse_string.c\
-	get_next_line.c
+	get_next_line.c\
+	convert.c
 
 OBJ	= $(SRC:.c=.o)
 
