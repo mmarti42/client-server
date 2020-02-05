@@ -81,6 +81,8 @@ void    print_socket(int sockfd)
     while (b--)
     {
         read(sockfd, &a, sizeof(uint64_t));
+        if (!a)
+            err_quit("Connection failed");
         convert(a);
         printf(format, a);
         printf(" ");
