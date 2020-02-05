@@ -2,7 +2,7 @@
 
 Simple client-server program. The server part generates a sequence of numbers consisting of subsequences (the subsequence is set by the client). 
 Each of the subsequences is an integer non-negative 64-bit counter. 
-The generated sequence is sent to the client. <pthread> library used to serve multiple clients.
+The generated sequence is sent to the client. Pthread library used to serve multiple clients.
 
 Example:  
 seq1 1 2  
